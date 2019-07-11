@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSubChannel));
             this.textBox_apks = new System.Windows.Forms.TextBox();
             this.textBox_channelId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button_modify = new System.Windows.Forms.Button();
             this.comboBox_sign = new System.Windows.Forms.ComboBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // textBox_apks
@@ -89,6 +91,12 @@
             this.comboBox_sign.Size = new System.Drawing.Size(71, 20);
             this.comboBox_sign.TabIndex = 5;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormSubChannel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -116,6 +124,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_modify;
         private System.Windows.Forms.ComboBox comboBox_sign;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

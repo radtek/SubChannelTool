@@ -77,6 +77,8 @@ namespace SubChannelTool
             //Tools.ZipTool.unzip(apkFile, targetPath);                         // apk包解压
             Tools.Apktool.unPackage(apkFile, null, false, false);               // 解包
 
+            //Tools.FileTools.ClearDir(Tools.Apktool.replaceDir);
+            //Tools.ZipTool.unzip(Tools.Apktool.replaceDir + ".zip", Tools.Apktool.replaceDir);
             CopyFolderTo(Tools.Apktool.replaceDir, targetPath, true);           // 复制Replace目录下的文件至解包目录下
 
             foreach (string channelId in channelIds)
@@ -143,6 +145,20 @@ namespace SubChannelTool
             foreach (DirectoryInfo dir in directoryInfoArray)
             {
                 CopyFolderTo(Path.Combine(dirSource, dir.Name), Path.Combine(dirTarget, dir.Name), overwirite);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!Tools.UpdateTool.updateIsRunning())
+            {
+                button_modify.Enabled = true;
+                button_modify.Text = "修改";
+            }
+            else
+            {
+                button_modify.Enabled = false;
+                button_modify.Text = "配置更新中...";
             }
         }
 
