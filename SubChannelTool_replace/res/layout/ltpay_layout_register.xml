@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/ltpay_drawable_ui_bg" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/ltpay_header" android:background="@color/ltpay_color_FAFAFC" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentTop="true">
+        <ImageButton android:id="@id/ltpay_dialog_header_back" android:background="@android:color/transparent" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="5.0dip" android:src="@drawable/ltpay_footerbar_goback_p" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:onClick="OnBack" />
+        <TextView android:textSize="18.0sp" android:textColor="@android:color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="账号注册" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/ltpay_header">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <View android:id="@id/ltpay_line1" android:background="#ff0cfed1" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_weight="1.0" />
+            <View android:id="@id/ltpay_line2" android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_weight="1.0" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ltpay_text_phone" android:layout_width="0.0dip" android:layout_height="30.0dip" android:text="手机号注册" android:layout_weight="1.0" />
+            <View android:background="#ffb9b9b9" android:layout_width="0.5dip" android:layout_height="fill_parent" />
+            <TextView android:textSize="15.0sp" android:textColor="#ffb9b9b9" android:gravity="center" android:id="@id/ltpay_text_email" android:layout_width="0.0dip" android:layout_height="30.0dip" android:text="用户名注册" android:layout_weight="1.0" />
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:paddingLeft="20.0dip" android:paddingRight="20.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="30.0dip">
+                <LinearLayout android:id="@id/ltpay_liner_phone" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <Spinner android:textSize="15.0sp" android:textColor="#ffa4a4a4" android:entries="@array/ltpay_phone_number_type" android:id="@id/ltpay_spinner_zone" android:background="@drawable/ltpay_drawable_edit_color" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="30.0dip" android:popupBackground="@drawable/ltpay_drawable_edit_color" android:layout_weight="2.0" android:dropDownHorizontalOffset="0.0dip" android:dropDownVerticalOffset="0.0dip" android:spinnerMode="dropdown" />
+                    <EditText android:textSize="15.0sp" android:textColor="#ff000000" android:textColorHint="#ffa4a4a4" android:id="@id/ltpay_edit_phone" android:background="@drawable/ltpay_drawable_edit_color" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:hint="手机号" android:layout_weight="1.0" android:inputType="textPhonetic" android:imeOptions="actionDone">
+                        <requestFocus />
+                    </EditText>
+                </LinearLayout>
+                <EditText android:textSize="15.0sp" android:textColor="#ff000000" android:textColorHint="#ffa4a4a4" android:id="@id/ltpay_edit_email" android:background="@drawable/ltpay_drawable_edit_color" android:paddingLeft="10.0dip" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="30.0dip" android:hint="请输入用户名" android:ems="10" android:inputType="text" android:imeOptions="actionDone" />
+            </FrameLayout>
+            <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+                <EditText android:textSize="15.0sp" android:textColor="#ff000000" android:textColorHint="#ffa4a4a4" android:id="@id/ltpay_edit_verifycode" android:background="@drawable/ltpay_drawable_edit_color" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="30.0dip" android:hint="请输入验证码" android:inputType="text" android:imeOptions="actionDone" />
+                <TextView android:textSize="15.0sp" android:textColor="#ff3f51b5" android:gravity="center" android:layout_gravity="right" android:id="@id/ltpay_text_getcode" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="30.0dip" android:text="点击获取" android:imeOptions="actionDone" />
+            </FrameLayout>
+            <LinearLayout android:id="@id/ltpay_allowprotocal_line" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
+                <CheckBox android:textSize="15.0sp" android:textColor="#ff000000" android:id="@id/ltpay_check_allowprotocal" android:paddingLeft="5.0dip" android:layout_width="wrap_content" android:layout_height="30.0dip" android:checked="true" android:text="同意用户协议" android:layout_weight="1.0" style="@style/ltpayCheckBoxTheme" />
+                <TextView android:textSize="15.0sp" android:textColor="#ffb9b9b9" android:gravity="center|right" android:layout_gravity="right" android:id="@id/ltpay_text_getuserprotocal" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="30.0dip" android:text="查看用户协议" android:layout_weight="1.0" />
+            </LinearLayout>
+            <Button android:textSize="15.0sp" android:textColor="@drawable/ltpay_drawable_btn_text_color2" android:gravity="center" android:id="@id/ltpay_btn_register" android:background="@drawable/ltpay_drawable_btn_bg_color2" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginTop="30.0dip" android:layout_marginBottom="30.0dip" android:text="注册账号" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

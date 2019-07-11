@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/ltpay_header" android:background="@color/ltpay_color_FAFAFC" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentTop="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageButton android:id="@id/ltpay_dialog_header_back" android:background="@android:color/transparent" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="5.0dip" android:src="@drawable/ltpay_footerbar_goback_p" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:onClick="OnBack" />
+    <TextView android:textSize="18.0sp" android:textColor="@android:color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="账号注册" android:layout_centerInParent="true" />
+</RelativeLayout>

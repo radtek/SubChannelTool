@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@drawable/ipay_bg" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/iv_close" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/ipay_margin_10" android:src="@drawable/ipay_dialog_close" />
+    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/ipay_margin_10" android:minHeight="@dimen/ipay_height_95">
+            <TextView android:textSize="@dimen/ipay_margin_15" android:textColor="@color/ipay_color_value_6" android:gravity="center" android:layout_gravity="center" android:id="@id/tv_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ipay_common_alert_dialog_tip" />
+        </LinearLayout>
+        <View android:background="@color/ipay_color_value_4_1" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_divid_line_h" />
+        <Button android:textSize="@dimen/ipay_text_size_15" android:textColor="@color/ipay_color_value_7_2" android:gravity="center" android:id="@id/btn_dialog_confirm" android:background="@drawable/ipay_bg" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_height_45" android:text="@string/ipay_common_alert_dialog_ensure" />
+    </LinearLayout>
+</FrameLayout>

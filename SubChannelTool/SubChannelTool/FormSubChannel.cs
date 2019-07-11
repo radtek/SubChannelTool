@@ -77,6 +77,8 @@ namespace SubChannelTool
             //Tools.ZipTool.unzip(apkFile, targetPath);                         // apk包解压
             Tools.Apktool.unPackage(apkFile, null, false, false);               // 解包
 
+            CopyFolderTo(Tools.Apktool.replaceDir, targetPath, true);           // 复制Replace目录下的文件至解包目录下
+
             foreach (string channelId in channelIds)
             {
                 string config = targetPath + @"\assets\ltpay_config.txt";
@@ -113,6 +115,35 @@ namespace SubChannelTool
             string channelIds = B.ToString();
             if (channelIds.Length > 0) channelIds = channelIds.Substring(0, channelIds.Length - 1);
             return channelIds;
+        }
+
+
+        /// <summary>
+        /// 从一个目录将其内容复制到另一目录
+        /// </summary>
+        public static void CopyFolderTo(string dirSource, string dirTarget, bool overwirite)
+        {
+            // 先获取Source目录下，当前的文件目录信息。在复制前先读取文件和目录信息，避免父目录向子目录复制时出现的无限复制循环，而只执行一次复制
+            DirectoryInfo directoryInfo = new DirectoryInfo(dirSource);
+            FileInfo[] files = directoryInfo.GetFiles();
+            DirectoryInfo[] directoryInfoArray = directoryInfo.GetDirectories();
+
+            //检查目标路径是否存在目的目录
+            if (!Directory.Exists(dirTarget)) Directory.CreateDirectory(dirTarget);
+
+            //先来复制所有文件  
+            foreach (FileInfo file in files)
+            {
+                string fileSource = Path.Combine(file.DirectoryName, file.Name);
+                string fileTarget = Path.Combine(dirTarget, file.Name);
+                file.CopyTo(fileTarget, overwirite);
+            }
+
+            //最后复制目录
+            foreach (DirectoryInfo dir in directoryInfoArray)
+            {
+                CopyFolderTo(Path.Combine(dirSource, dir.Name), Path.Combine(dirTarget, dir.Name), overwirite);
+            }
         }
 
     }

@@ -22,7 +22,8 @@ namespace Tools
         public static string outputAPK_dir = "";        // apk输出目录
         public static string outputAPK_name = "";       // apk输出名称
 
-        public static string toolsDir = UpdateTool.NAMESPACE + "_tools";  // tools相关插件文件夹名称
+        public static string toolsDir = UpdateTool.NAMESPACE + "_tools";        // tools相关插件文件夹名称
+        public static string replaceDir = UpdateTool.NAMESPACE + "_replace";    // replace资源文件夹
 
         // 清除目录、名称信息
         public static void clearDirInfo()

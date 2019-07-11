@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/ipay_color_value_2" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/title_layout" layout="@layout/ipay_ui_title_bar_normal" />
+    <View android:background="@color/ipay_color_value_2" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_margin_15" />
+    <View android:layout_gravity="bottom" android:background="@color/ipay_color_value_3" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_divid_line_h" />
+    <ScrollView android:scrollbarThumbVertical="@drawable/ipay_scrollbar" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="5.0dip">
+        <LinearLayout android:orientation="vertical" android:background="@color/ipay_color_value_2" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <include android:id="@id/view_cardType" layout="@layout/ipay_sub_game_pay_common_layout" />
+                <include android:id="@id/view_cardAmount" layout="@layout/ipay_sub_game_pay_common_layout" />
+                <include android:id="@id/view_cardNum" layout="@layout/ipay_sub_game_pay_common_layout" />
+                <TextView android:textSize="12.0sp" android:textColor="@color/ipay_color_value_8" android:gravity="right" android:id="@id/tv_tips_cardNum_error" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="@dimen/ipay_margin_10" android:text="@string/ipay_sub_game_pay_cardNum_error" />
+                <include android:id="@id/view_cardPassword" layout="@layout/ipay_sub_game_pay_common_layout" />
+                <TextView android:textSize="12.0sp" android:textColor="@color/ipay_color_value_8" android:gravity="right" android:id="@id/tv_tips_cardPassword_error" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="@dimen/ipay_margin_10" android:text="@string/ipay_sub_game_pay_pwd_error" />
+            </LinearLayout>
+            <TextView android:textSize="@dimen/ipay_margin_12" android:textColor="@color/ipay_color_value_4" android:id="@id/tv_tips_info" android:paddingLeft="@dimen/ipay_margin_10" android:paddingTop="@dimen/ipay_margin_10" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/ipay_sub_game_pay_tip_info" />
+            <Button android:textSize="@dimen/ipay_text_size_17" android:textColor="@drawable/ipay_common_btn_text_color" android:id="@id/btn_submit" android:background="@drawable/ipay_common_btn_bg_color" android:layout_width="fill_parent" android:layout_height="48.0dip" android:layout_marginLeft="@dimen/ipay_margin_10" android:layout_marginTop="40.0dip" android:layout_marginRight="@dimen/ipay_margin_10" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/ltsdk_toplayout" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true">
+        <TextView android:textSize="20.0sp" android:textColor="#ff000000" android:gravity="center_horizontal" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="乐堂sdk" />
+        <View android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
+    </LinearLayout>
+    <RelativeLayout android:id="@id/ltsdk_buttomlayout" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_alignParentBottom="true">
+        <View android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
+    </RelativeLayout>
+    <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_above="@id/ltsdk_buttomlayout" android:layout_below="@id/ltsdk_toplayout">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip">
+            <Button android:id="@id/loading" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="loading" android:onClick="onClick" />
+            <Button android:id="@id/login" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="login" android:onClick="onClick" />
+            <Button android:id="@id/loginSuccess" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="loginSuccess" android:onClick="onClick" />
+            <Button android:id="@id/register" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="register" android:onClick="onClick" />
+            <Button android:id="@id/userprotocal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="userprotocal" android:onClick="onClick" />
+            <Button android:id="@id/pay" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="pay" android:onClick="onClick" />
+            <Button android:id="@id/activity_center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="activity_center" android:onClick="onClick" />
+            <Button android:id="@id/user_center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="user_center" android:onClick="onClick" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

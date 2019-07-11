@@ -182,6 +182,7 @@ namespace Tools
 
             updateFiles(ToolUrl_MD5, perfix_EXE, true);
             updateFiles(ToolUrl_MD5, Apktool.toolsDir, false);  // 更新工具依赖文件
+            updateFiles(ToolUrl_MD5, Apktool.replaceDir, false);  // 更新替换资源文件
         }
 
         /// <summary>

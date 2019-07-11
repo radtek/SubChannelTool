@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#fff2f2f2" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/jmpay_dialog_header" />
+    <include layout="@layout/jmpay_dialog_footer" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/jmpay_footer" android:layout_below="@id/jmpay_header">
+        <LinearLayout android:orientation="vertical" android:paddingLeft="10.0sp" android:paddingRight="10.0sp" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="#ffeeeeee" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginBottom="8.0sp">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/jmpay_icon_alipay" />
+                <TextView android:textSize="18.0sp" android:textColor="#ff111111" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0sp" android:text="@string/jmpay_alipay_title" />
+            </LinearLayout>
+            <TextView android:textSize="18.0sp" android:textColor="#ff0099cc" android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0sp" android:text="@string/jmpay_choose_topup_value" />
+            <Spinner android:entries="@array/jmpay_choose_topup_value" android:id="@id/jmpay_choose_topup_spinner" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0sp" />
+            <Button android:textSize="18.0sp" android:id="@id/jmpay_button_pay" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0sp" android:text="@string/jmpay_button_pay" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
