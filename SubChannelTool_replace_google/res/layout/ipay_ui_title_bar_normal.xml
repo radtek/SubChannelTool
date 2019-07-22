@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/welcome_page" android:background="@color/ipay_color_value_7" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_title_h"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/activity_title_bar_left" android:padding="@dimen/ipay_margin_10" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ipay_ui_back_selector" android:scaleType="fitXY" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:contentDescription="@null" />
+    <TextView android:textSize="@dimen/ipay_text_size_18" android:textColor="@color/ipay_color_value_1" android:id="@id/activity_title_bar_middle" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ipay_ui_title_bar_normal_title" android:layout_centerInParent="true" />
+    <TextView android:textSize="@dimen/ipay_text_size_15" android:textColor="@drawable/ipay_ui_title_right_button_selector" android:id="@id/activity_title_bar_right" android:padding="@dimen/ipay_margin_10" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ipay_ui_title_bar_normal_log" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

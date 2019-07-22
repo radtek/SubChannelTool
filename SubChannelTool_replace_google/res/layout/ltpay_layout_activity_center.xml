@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/ltpay_drawable_ui_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/ltpay_header" android:background="@color/ltpay_color_FAFAFC" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentTop="true">
+        <ImageButton android:id="@id/ltpay_dialog_header_back" android:background="@android:color/transparent" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="5.0dip" android:src="@drawable/ltpay_footerbar_goback_p" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:onClick="OnBack" />
+        <TextView android:textSize="18.0sp" android:textColor="@android:color/black" android:id="@id/ltpay_text_tittle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="活动中心" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <View android:id="@id/view1" android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_below="@id/ltpay_header" />
+    <LinearLayout android:orientation="vertical" android:id="@id/ltpay_content" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/view1" />
+</RelativeLayout>

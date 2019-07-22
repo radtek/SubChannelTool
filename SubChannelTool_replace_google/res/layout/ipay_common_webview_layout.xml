@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/webView_bg" android:background="@color/ipay_transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/iapppay_ui_title_bar" layout="@layout/ipay_ui_title_bar_normal" />
+    <FrameLayout android:id="@id/fl_webView" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</LinearLayout>

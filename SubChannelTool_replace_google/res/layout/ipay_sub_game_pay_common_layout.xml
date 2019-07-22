@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@color/ipay_color_value_1" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="@dimen/ipay_height_44">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="wrap_content" android:layout_height="fill_parent" />
+            <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TextView android:textSize="@dimen/ipay_text_size_15" android:textColor="@color/ipay_color_value_6" android:id="@id/tv_title" android:paddingLeft="@dimen/ipay_margin_10" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <LinearLayout android:background="@color/ipay_color_value_1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center_vertical" android:id="@id/common_input_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <EditText android:textSize="@dimen/ipay_text_size_15" android:textColor="@color/ipay_color_value_5" android:textColorHint="@color/ipay_color_value_4" android:gravity="center|right" android:id="@id/edit" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="1.0" android:imeOptions="actionNext" android:imeActionLabel="@string/ipay_sub_game_pay_finish" />
+                        <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                            <TextView android:textSize="@dimen/ipay_text_size_15" android:textColor="@color/ipay_color_value_5" android:id="@id/tv_right" android:paddingRight="@dimen/ipay_margin_10" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                            <ImageView android:gravity="center_vertical" android:id="@id/imageView" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/ipay_margin_10" android:src="@drawable/ipay_ui_right_arrow" android:scaleType="fitXY" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <View android:layout_gravity="bottom" android:background="@color/ipay_color_value_3" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_divid_line_h" />
+</FrameLayout>

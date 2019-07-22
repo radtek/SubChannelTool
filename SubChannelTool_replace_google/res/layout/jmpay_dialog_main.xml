@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#fff2f2f2" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/jmpay_dialog_header" />
+    <include layout="@layout/jmpay_dialog_footer" />
+    <LinearLayout android:orientation="vertical" android:id="@id/jmpay_ll_goods_info" android:background="#ffe1e1e1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/jmpay_header">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:paddingRight="10.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="16.0sp" android:textColor="#ff111111" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/jmpay_goods_name" />
+            <TextView android:textSize="16.0sp" android:textColor="#ffff0000" android:id="@id/jmpay_pay_goods_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:paddingRight="10.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="16.0sp" android:textColor="#ff111111" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/jmpay_goods_price" />
+            <TextView android:textSize="16.0sp" android:textColor="#ffff0000" android:id="@id/jmpay_pay_price_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <ListView android:id="@id/jmpay_list_dialog_item" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_above="@id/jmpay_footer" android:layout_below="@id/jmpay_ll_goods_info" />
+</RelativeLayout>

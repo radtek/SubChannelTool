@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:textSize="@dimen/ipay_text_size_15" android:textColor="@color/ipay_color_value_6" android:gravity="center" android:id="@id/checked_tv" android:background="@color/ipay_color_value_1" android:layout_width="fill_parent" android:layout_height="@dimen/ipay_height_50" android:text="@string/ipay_common_single_select_dialog_tv"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/ltpay_drawable_ui_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/ltpay_header" android:background="@color/ltpay_color_FAFAFC" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentTop="true">
+        <ImageButton android:id="@id/ltpay_dialog_header_back" android:background="@android:color/transparent" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="5.0dip" android:src="@drawable/ltpay_footerbar_goback_p" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:onClick="OnBack" />
+        <TextView android:textSize="18.0sp" android:textColor="@android:color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="实名认证" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_weight="1.0" android:layout_below="@id/ltpay_header" />
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:layout_below="@id/ltpay_header">
+        <EditText android:textSize="15.0sp" android:textColor="#ff000000" android:textColorHint="#ffa4a4a4" android:id="@id/ltpay_edit_name" android:background="@drawable/ltpay_drawable_edit_color" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginTop="15.0dip" android:hint="请输入您的真实姓名" android:inputType="text" />
+        <EditText android:textSize="15.0sp" android:textColor="#ff000000" android:textColorHint="#ffa4a4a4" android:id="@id/ltpay_edit_identificaiton" android:background="@drawable/ltpay_drawable_edit_color" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginTop="15.0dip" android:hint="请输入您的身份证号" android:digits="0123456789xyzXYZ" android:inputType="number" />
+        <TextView android:textSize="15.0sp" android:textColor="#ffa4a4a4" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:text="@string/ltpay_realname_tip" />
+        <Button android:textSize="15.0sp" android:textColor="@drawable/ltpay_drawable_btn_text_color2" android:gravity="center" android:id="@id/ltpay_btn" android:background="@drawable/ltpay_drawable_btn_bg_color2" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginTop="15.0dip" android:text="提交" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/ltpay_drawable_ui_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/ltpay_header" android:background="@color/ltpay_color_FAFAFC" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentTop="true">
+        <ImageButton android:id="@id/ltpay_dialog_header_back" android:background="@android:color/transparent" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="5.0dip" android:src="@drawable/ltpay_footerbar_goback_p" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:onClick="OnBack" />
+        <TextView android:textSize="18.0sp" android:textColor="@android:color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="设置" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_below="@id/ltpay_header" />
+    <ScrollView android:id="@id/ltpay_scrollView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/ltpay_header">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip">
+            <RelativeLayout android:id="@id/ltpay_nickname" android:background="#fffafafc" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="70.0dip">
+                <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <TextView android:textSize="15.0sp" android:textColor="@color/ltpay_color_black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="修改昵称" android:layout_centerVertical="true" />
+                    <TextView android:textSize="13.0sp" android:textColor="@color/ltpay_color_gray" android:id="@id/ltpay_nickname_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="当前昵称：xxxx" android:layout_centerVertical="true" />
+                </LinearLayout>
+                <ImageView android:background="@drawable/ltpay_footerbar_goback_p" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:rotation="180.0" />
+            </RelativeLayout>
+            <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/ltpay_photo" android:background="#fffafafc" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="70.0dip">
+                <TextView android:textSize="15.0sp" android:textColor="@color/ltpay_color_black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="修改头像" android:layout_centerVertical="true" />
+                <ImageView android:id="@id/ltpay_image_next" android:background="@drawable/ltpay_footerbar_goback_p" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:rotation="180.0" />
+                <ImageView android:id="@id/ltpay_userphoto" android:background="@drawable/ltpay_jmlogo" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginRight="10.0dip" android:layout_centerVertical="true" android:layout_toStartOf="@id/ltpay_image_next" />
+            </RelativeLayout>
+            <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/ltpay_password" android:background="#fffafafc" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="70.0dip">
+                <TextView android:textSize="15.0sp" android:textColor="@color/ltpay_color_black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="修改密码" android:layout_centerVertical="true" />
+                <ImageView android:background="@drawable/ltpay_footerbar_goback_p" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:rotation="180.0" />
+            </RelativeLayout>
+            <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/ltpay_phone" android:background="#fffafafc" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="70.0dip">
+                <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <TextView android:textSize="15.0sp" android:textColor="@color/ltpay_color_black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="修改绑定手机号" android:layout_centerVertical="true" />
+                    <TextView android:textSize="13.0sp" android:textColor="@color/ltpay_color_gray" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="已绑定的手机号：138xxxx" android:layout_centerVertical="true" />
+                </LinearLayout>
+                <ImageView android:background="@drawable/ltpay_footerbar_goback_p" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:rotation="180.0" />
+            </RelativeLayout>
+            <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/ltpay_accept_msg" android:background="#fffafafc" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="70.0dip">
+                <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <TextView android:textSize="15.0sp" android:textColor="@color/ltpay_color_black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="接收官方优惠信息" android:layout_centerVertical="true" />
+                    <TextView android:textSize="13.0sp" android:textColor="@color/ltpay_color_gray" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="优惠信息、活动 第一时间获知" android:layout_centerVertical="true" />
+                </LinearLayout>
+                <ToggleButton android:id="@id/ltpay_toggleButton" android:background="@drawable/ltpay_drawable_toungle_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="" android:textOff="" android:text="ToggleButton" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <RelativeLayout android:id="@id/ltpay_loginout" android:background="#fffafafc" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="70.0dip">
+                <TextView android:textSize="15.0sp" android:textColor="@color/ltpay_color_black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="退出当前登录帐号" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View android:background="#ffb9b9b9" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

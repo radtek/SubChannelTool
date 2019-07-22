@@ -1,0 +1,35 @@
+﻿
+# 用户注册协议地址信息
+# UserProtocalUrl=https://gitee.com/joymeng/empty/raw/master/ltsdk/UserProtocal.txt
+
+# 登录后，是否弹出实名认证界面
+ShowRealName=false
+
+# 服务器地址信息
+# LtsdkServerName=10.80.5.71:88
+LtsdkServerName=lmsdk.joymeng.com
+
+
+# 预留分包子渠道号
+SubChannelId=0000000
+
+# 是否显示悬浮窗
+ShowFloat=false
+
+
+
+# google支付相关配置
+# -------------------------
+
+#参数
+google_publickey=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyrO29q8uKwR6KyW0WSowgb3BAtRv/ajb8Wd1mdNmfi81z0Girx7gNdYgPnR6DLzZC1lqWSmQ+8tER7CWqFs6xdPSf2/rmxQBtkuS6zEH1mZL01gYOJh4skBnUi81RbPJaPFskdHkoEHvxrU7MqHntOP2nyKaUklTa4JsD8axgChHgbYV0OcekO0PXC5z/uwijpMS5L2Q9nMOgc0SBQ7Ez7A+/9/tgDdF/JkweGlyBakMVUA/T3dhiw9XBsoiKRT0YzD1TFzjz7yRR3nV2ukhrYSO8kWGok0vq2PLsrq/5rWEIJbhXQUXUKqp9FwnpPfLK9HGUvz7/e65Ajo1oXJk5wIDAQAB
+
+# 乐堂服务器名称
+google_LtsdkServerName=netuserempirewar.hiwechats.com
+
+# 支付回调地址
+# notifyUrl=http://netuser.joymeng.com/charge_ty/notify
+
+# demo,游戏商品id
+ProductId=2
+
