@@ -116,6 +116,7 @@ namespace SubChannelTool
         {
             string appendActivity = "<activity android:name=\"com.ltsdk.union.platform.LtsdkGoogle\" android:configChanges=\"orientation|keyboardHidden|screenSize\"  android:theme=\"@android:style/Theme.Translucent.NoTitleBar.Fullscreen\" />";
             string appendNetWork = "android:networkSecurityConfig=\"@xml/network_security_config\"";
+            string appendPermission = "<uses-permission android:name=\"com.android.vending.BILLING\" />";
 
             string filePath = targetPath + @"\AndroidManifest.xml";
             if (System.IO.File.Exists(filePath))
@@ -129,6 +130,11 @@ namespace SubChannelTool
                 if (!data.Contains("xml/network_security_config"))
                 {
                     data = data.Replace("<application", "<application " + appendNetWork + " ");
+                }
+
+                if (!data.Contains("com.android.vending.BILLING"))
+                {
+                    data = data.Replace("<application", appendPermission + "\r\n " + "<application ");
                 }
 
                 FileProcess.SaveProcess(data, filePath);
