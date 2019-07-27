@@ -17,8 +17,8 @@ namespace SubChannelTool
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Tools.UpdateTool.AutoUpdate();          // 应用自动检测更新
-            Tools.DllTool.LoadResourceDll();        // 载入内部dll
+            SubChannelTool.UpdateTool.AutoUpdate();          // 应用自动检测更新
+            SubChannelTool.DllTool.LoadResourceDll();        // 载入内部dll
             Application.Run(new FormSubChannel());
         }
     }

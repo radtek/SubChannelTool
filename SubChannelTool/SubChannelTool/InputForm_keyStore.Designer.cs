@@ -1,4 +1,4 @@
-﻿namespace Tools
+﻿namespace SubChannelTool
 {
     partial class InputForm_keyStore
     {

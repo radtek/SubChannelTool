@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// SciTools.UpdateTool.AutoUpdate();            // 应用自动检测更新；
@@ -21,7 +21,7 @@ namespace Tools
     /// SciTools.WebTool.cs;                https://gitee.com/scimence/sciTools/raw/master/CS/WebTool.cs
     /// SciTools.EncoderTool_Alphabet.cs;   https://gitee.com/scimence/sciTools/raw/master/CS/EncoderTool_Alphabet.cs 
     /// </summary>
-    class UpdateTool
+    public class UpdateTool
     {
         // 当前命名空间名称
         //public static string NAMESPACE = GetNamespace(Assembly.GetEntryAssembly());
@@ -182,7 +182,7 @@ namespace Tools
 
             updateFiles(ToolUrl_MD5, perfix_EXE, true);
             updateFiles(ToolUrl_MD5, Apktool.toolsDir, false);  // 更新工具依赖文件
-            updateFiles(ToolUrl_MD5, Apktool.replaceDir, false);  // 更新替换资源文件
+            //updateFiles(ToolUrl_MD5, Apktool.replaceDir, false);  // 更新替换资源文件
         }
 
         /// <summary>

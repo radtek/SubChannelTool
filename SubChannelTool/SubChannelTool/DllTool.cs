@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tools
+namespace SubChannelTool
 {
 
     //static class Program

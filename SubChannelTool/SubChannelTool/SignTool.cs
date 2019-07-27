@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// apk签名、zipallign对齐
@@ -29,20 +29,20 @@ namespace Tools
 
             if (signFileName.EndsWith(".keystore"))
             {
-                String keysotreName = Tools.SignDepends.SinPath() + "\\" + signFileName;
+                String keysotreName = SubChannelTool.SignDepends.SinPath() + "\\" + signFileName;
 
-                String[] I = Tools.SignDepends.getKestoreInfo(signFileName);  // 获取对应的签名信息
+                String[] I = SubChannelTool.SignDepends.getKestoreInfo(signFileName);  // 获取对应的签名信息
                 String alias = I[0];
                 String password = I[1];
 
-                result = Tools.SignTool.SignKeyStore(apkName, keysotreName, alias, password, null);
+                result = SubChannelTool.SignTool.SignKeyStore(apkName, keysotreName, alias, password, null);
             }
             else
             {
-                String pem = Tools.SignDepends.SinPath() + "\\" + signFileName + ".x509.pem";
-                String pk8 = Tools.SignDepends.SinPath() + "\\" + signFileName + ".pk8";
+                String pem = SubChannelTool.SignDepends.SinPath() + "\\" + signFileName + ".x509.pem";
+                String pk8 = SubChannelTool.SignDepends.SinPath() + "\\" + signFileName + ".pk8";
                 String psw = "letang123";
-                result = Tools.SignTool.Sign(apkName, pem, pk8, psw, null);
+                result = SubChannelTool.SignTool.Sign(apkName, pem, pk8, psw, null);
             }
 
             // 删除打包生成的未签名文件
@@ -217,7 +217,7 @@ namespace Tools
         /// </summary>
         private static String SignApkRun(String arg, Cmd.Callback call)
         {
-            String signTool = addDQM(System.AppDomain.CurrentDomain.BaseDirectory + Tools.Apktool.toolsDir + "\\signapk.jar");
+            String signTool = addDQM(System.AppDomain.CurrentDomain.BaseDirectory + SubChannelTool.Apktool.toolsDir + "\\signapk.jar");
             String cmdStr = "java -jar " + signTool + " " + arg;
 
             return Cmd.Run(cmdStr, call);   // 调用cmd命令，运行apktool.jar
@@ -225,6 +225,42 @@ namespace Tools
 
         # endregion
 
+    }
+
+    public class ResDepends
+    {
+        /// <summary>
+        /// 获取配置资源文件所在目录
+        /// </summary>
+        public static String ResPath()
+        {
+            return System.AppDomain.CurrentDomain.BaseDirectory + Apktool.toolsDir + "\\res";
+        }
+
+        /// <summary>
+        /// 载入配置文件信息
+        /// </summary>
+        public static void loadRes(ComboBox comboBox)
+        {
+            string preStr = comboBox.Text;     //记录之前选中的信息
+            comboBox.Items.Clear();
+
+            //所有签名文件
+            string[] files = System.IO.Directory.GetFiles(ResPath());
+            foreach (string file in files)
+            {
+                if (file.ToLower().EndsWith(".zip") || file.ToLower().EndsWith(".rar"))
+                {
+                    string name = System.IO.Path.GetFileName(file);
+                    comboBox.Items.Add(name);
+                }
+            }
+
+            // 默认选中签名文件letang
+            int index = comboBox.Items.IndexOf("SubChannelTool_replace_头条统计.zip");
+            if (index == -1 && comboBox.Items.Count > 0) index = 0;
+            if (index != -1) comboBox.SelectedIndex = index;
+        }
     }
 
     public class SignDepends
@@ -236,6 +272,7 @@ namespace Tools
         {
             return System.AppDomain.CurrentDomain.BaseDirectory + Apktool.toolsDir+ "\\signs";
         }
+
 
         /// <summary>
         /// 载入签名文件信息
@@ -314,63 +351,63 @@ namespace Tools
     }
 
 
-    public class FileProcess
-    {
-        #region 文件读取与保存
+    //public class FileProcess
+    //{
+    //    #region 文件读取与保存
 
-        /// <summary>
-        /// 获取文件中的数据串
-        /// </summary>
-        public static string fileToString(String filePath)
-        {
-            string str = "";
+    //    /// <summary>
+    //    /// 获取文件中的数据串
+    //    /// </summary>
+    //    public static string fileToString(String filePath)
+    //    {
+    //        string str = "";
 
-            //获取文件内容
-            if (System.IO.File.Exists(filePath))
-            {
-                bool defaultEncoding = filePath.EndsWith(".txt");
+    //        //获取文件内容
+    //        if (System.IO.File.Exists(filePath))
+    //        {
+    //            bool defaultEncoding = filePath.EndsWith(".txt");
 
-                System.IO.StreamReader file1;
+    //            System.IO.StreamReader file1;
 
-                file1 = new System.IO.StreamReader(filePath);                  //读取文件中的数据
-                //if (defaultEncoding) file1 = new System.IO.StreamReader(filePath, Encoding.Default);//读取文件中的数据
-                //else file1 = new System.IO.StreamReader(filePath);                  //读取文件中的数据
+    //            file1 = new System.IO.StreamReader(filePath);                  //读取文件中的数据
+    //            //if (defaultEncoding) file1 = new System.IO.StreamReader(filePath, Encoding.Default);//读取文件中的数据
+    //            //else file1 = new System.IO.StreamReader(filePath);                  //读取文件中的数据
 
-                str = file1.ReadToEnd();                                            //读取文件中的全部数据
+    //            str = file1.ReadToEnd();                                            //读取文件中的全部数据
 
-                file1.Close();
-                file1.Dispose();
-            }
-            return str;
-        }
+    //            file1.Close();
+    //            file1.Dispose();
+    //        }
+    //        return str;
+    //    }
 
-        /// <summary>
-        /// 保存数据data到文件处理过程，返回值为保存的文件名
-        /// </summary>
-        public static String SaveProcess(String data, String filePath, Encoding encoding = null)
-        {
-            //不存在该文件时先创建
-            System.IO.StreamWriter file1 = null;
-            if (encoding == null) file1 = new System.IO.StreamWriter(filePath, false/*, System.Text.Encoding.UTF8*/);     //文件已覆盖方式添加内容
-            else file1 = new System.IO.StreamWriter(filePath, false, Encoding.Default);     // 使用指定的格式进行保存
+    //    /// <summary>
+    //    /// 保存数据data到文件处理过程，返回值为保存的文件名
+    //    /// </summary>
+    //    public static String SaveProcess(String data, String filePath, Encoding encoding = null)
+    //    {
+    //        //不存在该文件时先创建
+    //        System.IO.StreamWriter file1 = null;
+    //        if (encoding == null) file1 = new System.IO.StreamWriter(filePath, false/*, System.Text.Encoding.UTF8*/);     //文件已覆盖方式添加内容
+    //        else file1 = new System.IO.StreamWriter(filePath, false, Encoding.Default);     // 使用指定的格式进行保存
 
-            file1.Write(data);                                                              //保存数据到文件
+    //        file1.Write(data);                                                              //保存数据到文件
 
-            file1.Close();                                                                  //关闭文件
-            file1.Dispose();                                                                //释放对象
+    //        file1.Close();                                                                  //关闭文件
+    //        file1.Dispose();                                                                //释放对象
 
-            return filePath;
-        }
+    //        return filePath;
+    //    }
 
-        /// <summary>
-        /// 获取当前运行目录
-        /// </summary>
-        public static string CurDir()
-        {
-            return AppDomain.CurrentDomain.BaseDirectory;
-        }
+    //    /// <summary>
+    //    /// 获取当前运行目录
+    //    /// </summary>
+    //    public static string CurDir()
+    //    {
+    //        return AppDomain.CurrentDomain.BaseDirectory;
+    //    }
 
-        #endregion
-    }
+    //    #endregion
+    //}
 
 }

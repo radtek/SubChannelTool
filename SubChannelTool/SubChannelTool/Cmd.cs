@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// 执行CMD命令，或以进程的形式打开应用程序（d:\*.exe）
@@ -53,13 +53,16 @@ namespace Tools
                     // 执行method逻辑
                     if (method != null) method();
 
-
                     if (button != null)
                     {
                         button.Text = text;
                         button.Enabled = true;
                     }
-                    if (form != null) form.ControlBox = true;
+
+                    if (form != null)
+                    {
+                        form.ControlBox = true;
+                    }
                 });
 
                 thread.Priority = ThreadPriority.AboveNormal;           // 设置子线程优先级

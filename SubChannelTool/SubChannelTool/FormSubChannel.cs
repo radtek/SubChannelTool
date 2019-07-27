@@ -13,6 +13,8 @@ namespace SubChannelTool
 {
     public partial class FormSubChannel : Form
     {
+        public bool isGooglePay = false;    // 是否为google支付配置资源
+
         public FormSubChannel()
         {
             InitializeComponent();
@@ -20,12 +22,12 @@ namespace SubChannelTool
 
         private void textBox_apks_DragEnter(object sender, DragEventArgs e)
         {
-            Tools.DragDropTool.Form_DragEnter(sender, e);
+            SubChannelTool.DragDropTool.Form_DragEnter(sender, e);
         }
 
         private void textBox_apks_DragDrop(object sender, DragEventArgs e)
         {
-            Tools.DragDropTool.Form_DragDrop(sender, e);
+            SubChannelTool.DragDropTool.Form_DragDrop(sender, e);
 
             // 载入子渠道号信息
             string[] files = textBox_apks.Text.Split(';');
@@ -34,34 +36,65 @@ namespace SubChannelTool
 
         private void FormSubChannel_Load(object sender, EventArgs e)
         {
-            Tools.SignDepends.loadSigns(comboBox_sign); // 载入签名文件信息
+            SubChannelTool.SignDepends.loadSigns(comboBox_sign); // 载入签名文件信息
+            SubChannelTool.ResDepends.loadRes(combo_type);       // 载入资源文件信息
+
+            LoadParam();
         }
 
         private void button_modify_Click(object sender, EventArgs e)
         {
-            Tools.Cmd.ThreadRun(ModifyLogic, this, button_modify);
+            RecordPraram();
+
+            SubChannelTool.Cmd.ThreadRun(ModifyLogic, this, button_modify);
         }
 
         public void ModifyLogic()
         {
+            if(isGooglePay)
+            {
+                string publicKey0 = textPublicKey.Text.Trim();
+                if (publicKey0.Equals(""))
+                {
+                    MessageBox.Show("google支付公钥，publickey不应为空！");
+                    return;
+                }
+            }
+
             string[] files = textBox_apks.Text.Split(';');
             string channelIdText = textBox_channelId.Text.Trim().Replace("；", ";").Replace("，", ";").Replace(",", ";").Replace("、", ";");
             string[] channelIds = channelIdText.Split(';');
+
+            string publicKey = textPublicKey.Text.Trim();
+            string ltServer = textLtserver.Text.Trim();
+            string notifyUrl = textNotify.Text.Trim();
+
+            UnzipRes();
 
             foreach (string Name in files)
             {
                 if (Name.ToLower().EndsWith(".apk"))
                 {
-                    ModifyLogic(Name, channelIds);
+                    ModifyLogic(Name, channelIds, publicKey, ltServer, notifyUrl);
                 }
             }
+        }
+
+        /// <summary>
+        /// 解压配置资源文件
+        /// </summary>
+        private void UnzipRes()
+        {
+            String zipPath = SubChannelTool.ResDepends.ResPath() +  "\\" + combo_type.SelectedItem.ToString();
+            SubChannelTool.FileTools.ClearDir(SubChannelTool.Apktool.replaceDir);
+            SubChannelTool.ZipTool.unzip(zipPath, SubChannelTool.Apktool.replaceDir);
         }
 
         /// <summary>
         /// 执行修改逻辑
         /// </summary>
         /// <param name="apkFile"></param>
-        private void ModifyLogic(string apkFile, string[] channelIds)
+        private void ModifyLogic(string apkFile, string[] channelIds, string publickey, string serverName, string notifyUrl)
         {
             if (apkFile.Trim().Equals("") || !File.Exists(apkFile)) return;
 
@@ -71,29 +104,67 @@ namespace SubChannelTool
             //byte[] dataM = Encoding.UTF8.GetBytes(data);
             //Tools.ZipTool.WriteFile(apkFile, "assets/ltpay_config.txt", dataM);
 
-            string targetPath = Tools.FileTools.getPathNoExt(apkFile);
-            Tools.FileTools.ClearDir(targetPath);
+            string targetPath = SubChannelTool.FileTools.getPathNoExt(apkFile);
+            SubChannelTool.FileTools.ClearDir(targetPath);
 
-            //Tools.ZipTool.unzip(apkFile, targetPath);                         // apk包解压
-            Tools.Apktool.unPackage(apkFile, null, false, false);               // 解包
+            SubChannelTool.Apktool.unPackage(apkFile, null, false, false);               // apk包解压
+            CopyFolderTo(SubChannelTool.Apktool.replaceDir, targetPath, true);           // 复制Replace目录下的文件至解包目录下
 
-            //Tools.FileTools.ClearDir(Tools.Apktool.replaceDir);
-            //Tools.ZipTool.unzip(Tools.Apktool.replaceDir + ".zip", Tools.Apktool.replaceDir);
-            CopyFolderTo(Tools.Apktool.replaceDir, targetPath, true);           // 复制Replace目录下的文件至解包目录下
+            string config = targetPath + @"\assets\ltpay_config.txt";
+            if (isGooglePay)
+            {
+                if (!publickey.Equals("")) SubChannelTool.PropertyTool.SetProperty(config, "google_publickey", publickey);           // 修改google支付公钥
+                if (!serverName.Equals("")) SubChannelTool.PropertyTool.SetProperty(config, "google_LtsdkServerName", serverName);   // 修改乐堂支付服务器地址信息
+                if(!notifyUrl.Equals("")) SubChannelTool.PropertyTool.SetProperty(config, "notifyUrl", notifyUrl);                   // 修改支付回调通知地址
+            }
+
+            ModifyManifest(targetPath);
 
             foreach (string channelId in channelIds)
             {
-                string config = targetPath + @"\assets\ltpay_config.txt";
-                Tools.PropertyTool.SetProperty(config, "SubChannelId", channelId);  // 修改渠道号
+                //string config = targetPath + @"\assets\ltpay_config.txt";
+                SubChannelTool.PropertyTool.SetProperty(config, "SubChannelId", channelId);  // 修改渠道号
 
                 string zipPath = targetPath + "_" + channelId + ".apk";
                 //Tools.ZipTool.zipFolder(targetPath, zipPath);                     // 生成apk
-                Tools.Apktool.package(targetPath, null, zipPath);                   // 生成apk
+                SubChannelTool.Apktool.package(targetPath, null, zipPath);                   // 生成apk
 
-                Tools.SignTool.SignApk(zipPath, comboBox_sign.Text);                // 对apk进行签名
+                SubChannelTool.SignTool.SignApk(zipPath, comboBox_sign.Text);                // 对apk进行签名
             }
 
-            Tools.FileTools.ClearDir(targetPath);   // 清空目录
+            SubChannelTool.FileTools.ClearDir(targetPath);   // 清空目录
+        }
+
+        /// <summary>
+        /// 对Manifest.xml进行修改
+        /// </summary>
+        private void ModifyManifest(string targetPath)
+        {
+            string appendActivity = "<activity android:name=\"com.ltsdk.union.platform.LtsdkGoogle\" android:configChanges=\"orientation|keyboardHidden|screenSize\"  android:theme=\"@android:style/Theme.Translucent.NoTitleBar.Fullscreen\" />";
+            string appendNetWork = "android:networkSecurityConfig=\"@xml/network_security_config\"";
+            string appendPermission = "<uses-permission android:name=\"com.android.vending.BILLING\" />";
+
+            string filePath = targetPath + @"\AndroidManifest.xml";
+            if (System.IO.File.Exists(filePath))
+            {
+                string data = FileProcess.fileToString(filePath);
+                if (isGooglePay && !data.Contains("com.ltsdk.union.platform.LtsdkGoogle"))
+                {
+                    data = data.Replace("</application>", appendActivity + "\r\n " + "</application>");
+                }
+
+                if (!data.Contains("xml/network_security_config"))
+                {
+                    data = data.Replace("<application", "<application " + appendNetWork + " ");
+                }
+
+                if (isGooglePay && !data.Contains("com.android.vending.BILLING"))
+                {
+                    data = data.Replace("<application", appendPermission + "\r\n " + "<application ");
+                }
+
+                FileProcess.SaveProcess(data, filePath);
+            }
         }
 
         /// <summary>
@@ -109,8 +180,8 @@ namespace SubChannelTool
             {
                 if (file.ToLower().EndsWith(".apk"))
                 {
-                    string data = Tools.ZipTool.ReadFile(file, "assets/ltpay_config.txt");
-                    string value = Tools.PropertyTool.getProperty(data, "SubChannelId");
+                    string data = SubChannelTool.ZipTool.ReadFile(file, "assets/ltpay_config.txt");
+                    string value = SubChannelTool.PropertyTool.getProperty(data, "SubChannelId");
                     B.Append(value + ";");
                 }
             }
@@ -150,7 +221,7 @@ namespace SubChannelTool
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!Tools.UpdateTool.updateIsRunning())
+            if (!SubChannelTool.UpdateTool.updateIsRunning())
             {
                 button_modify.Enabled = true;
                 button_modify.Text = "修改";
@@ -162,5 +233,60 @@ namespace SubChannelTool
             }
         }
 
+        private void combo_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            isGooglePay = combo_type.SelectedItem.ToString().Contains("google");
+            groupBox_google.Visible = isGooglePay;
+        }
+
+        /// <summary>
+        /// 记录参数信息
+        /// </summary>
+        private void RecordPraram()
+        {
+            String apks = textBox_apks.Text.Trim();
+            String type = combo_type.SelectedItem.ToString().Trim();
+            String channelId = textBox_channelId.Text.Trim();
+            String sign = comboBox_sign.SelectedItem.ToString().Trim();
+            String PublicKey = textPublicKey.Text.Trim();
+            String server = textLtserver.Text.Trim();
+            String notify = textNotify.Text.Trim();
+
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "apks", apks);
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "type", type);
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "channelId", channelId);
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "sign", sign);
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "PublicKey", PublicKey);
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "server", server);
+            RegistryTool.RegistrySave(SubChannelTool.UpdateTool.NAMESPACE, "notify", notify);
+        }
+
+        private void LoadParam()
+        {
+            String apks = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "apks");
+            String type = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "type");
+            String channelId = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "channelId");
+            String sign = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "sign");
+            String PublicKey = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "PublicKey");
+            String server = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "server");
+            String notify = RegistryTool.RegistryStrValue(SubChannelTool.UpdateTool.NAMESPACE, "notify");
+
+            textBox_apks.Text = apks;
+
+            // 设置分包类型
+            int index = combo_type.Items.IndexOf(type);
+            if (index != -1) combo_type.SelectedIndex = index;
+
+            textBox_channelId.Text = channelId;
+
+            // 设置签名类型
+            index = comboBox_sign.Items.IndexOf(sign);
+            if (index != -1) comboBox_sign.SelectedIndex = index;
+
+            textPublicKey.Text = PublicKey;
+            textLtserver.Text = server;
+            textNotify.Text = notify;
+
+        }
     }
 }

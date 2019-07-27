@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// # 预留分包子渠道号

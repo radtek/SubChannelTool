@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// 输入keystoreName签名对应信息到InfoPath

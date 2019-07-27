@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SubChannelTool</RootNamespace>
     <AssemblyName>SubChannelTool</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,6 +56,7 @@
     <Compile Include="Cmd.cs" />
     <Compile Include="DllTool.cs" />
     <Compile Include="DragDropTool.cs" />
+    <Compile Include="FileProcess.cs" />
     <Compile Include="FormSubChannel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +72,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyTool.cs" />
+    <Compile Include="RegistryTool.cs" />
     <Compile Include="SignTool.cs" />
     <Compile Include="UpdateTool.cs" />
     <Compile Include="ZipTool.cs" />

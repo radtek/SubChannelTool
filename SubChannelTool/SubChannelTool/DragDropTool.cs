@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// 拖拽处理

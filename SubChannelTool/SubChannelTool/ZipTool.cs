@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tools
+namespace SubChannelTool
 {
     /// <summary>
     /// 文件压缩zip()、解压缩unzip()；
